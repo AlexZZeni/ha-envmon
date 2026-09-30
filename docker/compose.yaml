@@ -1,0 +1,28 @@
+services:
+  environmental-monitoring:
+    build: ./server
+    image: environmental-monitoring:latest
+    container_name: environmental-monitoring
+    restart: unless-stopped
+    user: "0:0"
+    ports:
+      - "5000:5000"
+    # Só o GPIO, sem privileged. Se a leitura falhar com erro de permissão,
+    # troque devices + security_opt por `privileged: true` para descartar essa causa.
+    devices:
+      - /dev/gpiochip0
+      - /dev/gpiomem
+    # O RPi.GPIO e o Blinka reconhecem o Pi por /proc/device-tree. O Docker bloqueia
+    # esse caminho de duas formas: esconde /sys/firmware (systempaths) e o perfil
+    # AppArmor padrão nega a leitura dele. Capabilities, seccomp e o acesso a
+    # dispositivos continuam restritos; só o GPIO acima fica disponível.
+    security_opt:
+      - systempaths=unconfined
+      - apparmor=unconfined
+    environment:
+      # Identificador estável do Pi no Home Assistant; mude se tiver mais de um.
+      DEVICE_ID: raspberrypi-envmon
+      DEVICE_NAME: Raspberry Pi
+      # id:pino:modelo[:nome]
+      SENSORS: "sensor_1:D4:DHT11:Sensor 1,sensor_2:D25:DHT11:Sensor 2"
+      READ_INTERVAL: "30"

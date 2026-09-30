@@ -1,0 +1,7 @@
+flask==3.1.2
+waitress==3.0.2
+adafruit-circuitpython-dht==4.0.12
+Adafruit-Blinka==9.1.0
+# Pinos do Pi 1-3 no Blinka. Ele só instala isso sozinho quando enxerga o device
+# tree, o que não acontece dentro do docker build. (Pi 5 usaria lgpio.)
+RPi.GPIO==0.7.1 ; platform_machine == "armv7l" or platform_machine == "aarch64"
