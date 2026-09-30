@@ -1,0 +1,11 @@
+{
+  "device": {"id": "raspberrypi-envmon", "name": "Raspberry Pi", "version": "2.0.0"},
+  "sensors": [
+    {"id": "sensor_1", "name": "Sensor 1", "model": "DHT11", "pin": "D4", "status": "ok",
+     "temperature": 23.9, "humidity": 54.5, "last_update": "2026-09-30T16:41:31+00:00",
+     "last_error": null, "consecutive_errors": 0},
+    {"id": "sensor_2", "name": "Sensor 2", "model": "DHT11", "pin": "D25", "status": "stale",
+     "temperature": 24.3, "humidity": 54.1, "last_update": "2026-09-30T15:00:00+00:00",
+     "last_error": "RuntimeError: Checksum did not validate", "consecutive_errors": 12}
+  ]
+}

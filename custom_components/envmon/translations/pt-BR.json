@@ -1,0 +1,23 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Environmental Monitoring",
+        "description": "Endereço do Raspberry Pi que roda o container environmental-monitoring.",
+        "data": {
+          "host": "Host",
+          "port": "Porta"
+        },
+        "data_description": {
+          "host": "IP ou nome, por exemplo 10.65.240.10"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Não foi possível acessar o servidor. Confira o host, a porta e se o container está rodando."
+    },
+    "abort": {
+      "already_configured": "Este servidor já está configurado."
+    }
+  }
+}
